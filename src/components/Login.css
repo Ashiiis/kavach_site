@@ -1,0 +1,28 @@
+/* styles.css */
+
+.containor {
+    display: flex;
+    flex-direction: column; /* Align children vertically */
+    align-items: center;
+    height:20rem;
+    width:19rem;
+    background-color: white;
+    margin-left: 70rem;
+    margin-top: -30rem;
+    padding: 9px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle box shadow for a card-like effect */
+    transition: background-color 0.3s ease;
+    /* Add a smooth transition effect for background color changes */
+  }
+  
+  .container.active {
+    background-color: lightgray; /* Change the background color when active */
+  }
+  @media (max-width: 600px) {
+    .containor {
+        width: calc(100% - 20px); 
+        margin-left: 4px;
+        margin-top: -30px; 
+    }
+  }

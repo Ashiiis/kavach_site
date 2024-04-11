@@ -1,5 +1,6 @@
 import styles from "../style";
 import GetStarted from "./GetStarted";
+// import Login from './Login';
 import { main } from "../assets";
 const Hero = () => {
   return (

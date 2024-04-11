@@ -2,10 +2,43 @@ import React from 'react'
 import { useState } from 'react'
 import { close, logo, menu } from '../assets';
 import { navLinks } from '../constants';
+import { CiLogin } from "react-icons/ci";
+import   {useDispatch} from 'react-redux' ; 
+import { userNotExist } from '../redux/userReducer';
+import { FaUser } from "react-icons/fa";
+import {useNavigate} from 'react-router-dom'
+import toast from 'react-hot-toast'
+const Navbar = (user) => {
 
-const Navbar = () => {
+  const navigate = useNavigate() ; 
     const [active, setActive] = useState("Home");
+    const [isOpen , setIsOpen] = useState(false) ; 
     const [toggle, setToggle] = useState(false);
+
+
+    const dispatch = useDispatch() ; 
+
+    const hanldeClick  = () =>{
+
+      if(user.user.id===""){
+
+        navigate( "/login")
+      
+      }
+      
+      else{
+        dispatch(userNotExist())
+        toast('Logged out successfully')
+       
+      }
+    }
+
+    
+  //  console.log(props)
+    console.log(user)
+    // const users =  { 
+    //   id : "" 
+    // }
   
     return (
       <nav className="w-full flex py-6 justify-between items-center navbar">
@@ -42,18 +75,51 @@ const Navbar = () => {
               {navLinks.map((nav, index) => (
                 <li
                   key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${
+                  className={`font-poppins font-medium cursor-pointer text-[16px] m-6px ${
                     active === nav.title ? "text-white" : "text-dimWhite"
                   } ${index === navLinks.length - 1 ? "mb-0" : "mb-4"}`}
                   onClick={() => setActive(nav.title)}
                 >
                   <a href={`#${nav.id}`}>{nav.title}</a>
                 </li>
+
               ))}
+
+
             </ul>
           </div>
         </div>
+             {
+              user.user.id ==="" ? (
+                (
+
+                  <button onClick={hanldeClick}><CiLogin color ='red'/></button>
+                )
+              )
+              :
+              (
+                <>
+                <button className='text-red-500' onClick ={()=>{
+                    setIsOpen((prev)=> ! prev);
+                  }}>
+                  <FaUser color='red'/>
+                </button>
+              
+                <dialog open = {isOpen}>
+                  <div>
+                    <h1>User</h1>
+              
+                    <button onClick={hanldeClick}>LOGOUT</button>
+                  </div>
+                </dialog>
+                </>
+              )
+             }
       </nav>
+
+      
     );
   };
   export default Navbar;
+
+ 
