@@ -3,8 +3,10 @@ import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import { TextField, Button } from '@mui/material'
 export default function Register() {
-   // const BASE_URL = "http://localhost:8000/";
-    const BASE_URL = "https://kavachbackend-hn0ceuc2r-ashiiis-projects.vercel.app/";
+    const BASE_URL = "http://localhost:8000/";
+    //enable the below link after the api will be deployed succesfully untill then you have to run it on local host server of django
+
+    //const BASE_URL = "https://kavachbackend-hn0ceuc2r-ashiiis-projects.vercel.app/";
 
   
     // State to manage form data
